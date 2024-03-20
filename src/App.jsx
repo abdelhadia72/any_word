@@ -8,11 +8,22 @@ import { Data } from "./components/Data";
 
 export const WordData = createContext("hello data");
 
+// this is for the font change
+export const FontTheme = createContext( () =>{
+  return localStorage.getItem('font') || 'sans';
+}
+)
+
 function App() {
   const [data, setData] = useState("data :eee");
+  const [font, setFont] = useState(() =>{
+    return localStorage.getItem('font') || 'sans';
+  });
+
   return (
     <WordData.Provider value={[data, setData]}>
-      <div className="min-h-screen bg-white py-20 transition-all dark:bg-[#13332e]">
+      <FontTheme.Provider value={[font, setFont]}>
+      <div className={`min-h-screen font-${font} bg-white py-20 transition-all dark:bg-[#13332e]`}>
         <div className="container max-w-[800px] mx-auto">
           <Navbar />
           <SearchBar />
@@ -20,6 +31,7 @@ function App() {
           {/* <NotFound /> */}
         </div>
       </div>
+      </FontTheme.Provider>
     </WordData.Provider>
   );
 }

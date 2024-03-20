@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { useContext } from "react";
+import { useContext} from "react";
 import { WordData } from "../App";
 import { data } from "autoprefixer";
+import { FontTheme } from "../App";
+
 
 export const Data = () => {
+  const [font, setFont] = useContext(FontTheme);
   const [dataValue, setDataValue] = useContext(WordData);
 
   const playAudio = () => {
@@ -13,7 +16,7 @@ export const Data = () => {
 
   try {
     return (
-      <div className="">
+      <div className={`font-[${font}] transition-all`}>
         <div className="holder p-2 py-10">
           <div className="word flex justify-between items-center">
             <h1 className="text-8xl dark:text-white transition-all capitalize">

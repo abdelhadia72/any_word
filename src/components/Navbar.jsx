@@ -1,28 +1,55 @@
 import React, { useState, useEffect } from "react";
+import { useContext } from "react";
+import { FontTheme } from "../App";
 
 export const Navbar = () => {
   const [selectedOption, setSelectedOption] = useState("");
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('theme') || 'light';
+  });
 
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
 
-  // deal with theme
+  const [font, setFont] = useContext(FontTheme);
 
-  const [theme, setTheme] = useState("light");
+  // handle the theme change
+  // useEffect(() => {
+  //
+  //     document.body.className = theme;
+  // }, [theme]);
 
+
+  // handle the theme change
   useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
+    if (theme === "light"){
+      document.body.classList.remove(font.replace(/,/g, '-'));
+      document.body.classList.remove("light");
+    }else{
+    document.body.className = theme;
     }
   }, [theme]);
 
+
+  useEffect(() => {
+    document.body.className = font;
+  }, [font]);
+
+  // handle the theme change
   const handleThemeChange = () => {
-    setTheme(theme === "light" ? "dark" : "light");
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    console.log("new theme is ", newTheme)
+    localStorage.setItem('theme', newTheme);
     console.log("theme changed");
+  };
+
+// handle the custome font
+  const handleOptionChange = (event) => {
+    const newFont = event.target.value;
+    setFont(newFont);
+    console.log("new font is ", newFont);
+    localStorage.setItem('font', newFont);
+    console.log("font changed");
+
   };
 
   return (
@@ -33,16 +60,17 @@ export const Navbar = () => {
       <div className="rightSide flex  gap-10 justify-between items-center">
         <div className="font ">
           <select
-            className=" rounded-[5px] p-2 px-2 dark:bg-[#175744] transition-all dark:text-white"
-            value={selectedOption}
-            onChange={handleOptionChange}>
-            <option value="sans">Sans Serif</option>
-            <option value="serif">Serif</option>
-            <option value="mono">Mono</option>
+              className=" rounded-[5px] p-2 px-2 dark:bg-[#175744] transition-all dark:text-white"
+              value={font}
+              onChange={handleOptionChange}>
+            <option value="default">default</option>
+            <option value="lora">lora</option>
+            <option value="open">sans</option>
+            <option value="serif">serif</option>
           </select>
         </div>
         <div
-          onClick={handleThemeChange}
+            onClick={handleThemeChange}
           className="themeSwitch cursor-pointer active:rotate-45 active:scale-95
           transition-all">
           <img
