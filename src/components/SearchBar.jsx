@@ -6,16 +6,26 @@ import { WordData } from "../App";
 export const SearchBar = (e) => {
   const refValue = useRef("");
   const [dataValue, setDataValue] = useContext(WordData);
-  const [word, setWord] = useState("hello");
 
-  const { data, loading, error } = useFetch(
-    `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
-  );
+  // const { data, loading, error } = useFetch(
+  //   `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+  // );
 
-  const search = () => {
-    console.log(data);
-    setDataValue(data);
-    setWord(refValue.current.value);
+
+
+  const search = async () => {
+    const word = refValue.current.value;
+    console.log(word);
+
+    try {
+      const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+      const data = await response.json();
+      console.log("Let's go", data);
+      setDataValue(data)
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+
     refValue.current.value = "";
   };
 

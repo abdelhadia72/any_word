@@ -6,27 +6,9 @@ import { data } from "autoprefixer";
 export const Data = () => {
   const [dataValue, setDataValue] = useContext(WordData);
 
-  // try {
-  //   console.log("DATA", dataValue);
-  //   console.log("how to ", dataValue[0]?.phonetic);
-  //   console.log("-> ", dataValue[0]?.meanings[0]?.partOfSpeech);
-  //   console.log("this is the data 04", dataValue[0]?.meanings);
-  //   // ! loop on the meanings
-  //   dataValue[0].meanings?.map((e) => {
-  //     console.log("Name: ", e.partOfSpeech);
-  //     // ! loop on the definitions
-  //     console.log("DB", e.definitions[0].definition);
-  //     e.definitions?.map((e) => {
-  //       console.log("definition: ", e.definition);
-  //       console.log("exmaple: ", e.example);
-  //     });
-  //   });
-  // } catch (error) {
-  //   console.log("error", error);
-  // }
-
   const playAudio = () => {
-    new Audio(dataValue[0].phonetics[0].audio).play();
+    // new Audio(dataValue[0].phonetics[0].audio).play();
+    console.log(`audio (${dataValue[0].phonetics[0].audio})`)
   };
 
   try {
@@ -47,8 +29,8 @@ export const Data = () => {
               />
             </div>
           </div>
-          <h2 className="text-green-400 text-2xl ml-4">
-            {/* {dataValue[0].phonetics[1].text} */}
+          <h2 className="text-green-400 text-3xl mt-2 ml-4">
+             {dataValue[0].phonetics[1].text}
           </h2>
           <div className="allInfo mt-10">
             {dataValue[0].meanings.map((e) => {
@@ -56,7 +38,7 @@ export const Data = () => {
                 <h3 className="text-xl">{e.partOfSpeech}</h3>
               </div>;
             })}
-            {/* <div>{dataValue[0].meanings[0]}</div> */}
+             {/*<div>{dataValue[0].meanings[0]}</div>*/}
 
             {dataValue[0].meanings.map((e, index) => (
               <div className="holer transition-all" key={index}>

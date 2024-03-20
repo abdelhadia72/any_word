@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 
 export const Navbar = () => {
   const [selectedOption, setSelectedOption] = useState("");
+  const [theme, setTheme] = useState("dark");
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
+
+  // deal with theme
 
   const [theme, setTheme] = useState("light");
 
