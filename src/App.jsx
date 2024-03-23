@@ -10,6 +10,7 @@ export const WordData = createContext("hello data");
 
 // this is for the font change
 export const FontTheme = createContext( () =>{
+
   return localStorage.getItem('font') || 'sans';
 }
 )
@@ -23,12 +24,12 @@ function App() {
   return (
     <WordData.Provider value={[data, setData]}>
       <FontTheme.Provider value={[font, setFont]}>
-      <div className={`min-h-screen font-${font} bg-white py-20 transition-all dark:bg-[#13332e]`}>
+      <div className={`min-h-screen font[${font}] bg-white py-20 transition-all dark:bg-[#13332e]`}>
         <div className="container max-w-[800px] mx-auto">
           <Navbar />
           <SearchBar />
           <Data />
-          {/* <NotFound /> */}
+          {/*<NotFound /> */}
         </div>
       </div>
       </FontTheme.Provider>

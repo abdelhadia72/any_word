@@ -12,20 +12,9 @@ export const Navbar = () => {
   const [font, setFont] = useContext(FontTheme);
 
   // handle the theme change
-  // useEffect(() => {
-  //
-  //     document.body.className = theme;
-  // }, [theme]);
-
-
-  // handle the theme change
   useEffect(() => {
-    if (theme === "light"){
-      document.body.classList.remove(font.replace(/,/g, '-'));
-      document.body.classList.remove("light");
-    }else{
-    document.body.className = theme;
-    }
+
+      document.body.className = theme;
   }, [theme]);
 
 
@@ -58,7 +47,7 @@ export const Navbar = () => {
         <img className="max-w-14" src="/src/assets/logo.png" alt="logo.png" />
       </div>
       <div className="rightSide flex  gap-10 justify-between items-center">
-        <div className="font ">
+        <div className="font">
           <select
               className=" rounded-[5px] p-2 px-2 dark:bg-[#175744] transition-all dark:text-white"
               value={font}

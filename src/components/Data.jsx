@@ -4,14 +4,23 @@ import { WordData } from "../App";
 import { data } from "autoprefixer";
 import { FontTheme } from "../App";
 
-
 export const Data = () => {
   const [font, setFont] = useContext(FontTheme);
   const [dataValue, setDataValue] = useContext(WordData);
 
+
+  // to handle the audio if we don't find it int zero index we go till 3 maybe I'll make it daynamic later
   const playAudio = () => {
-    // new Audio(dataValue[0].phonetics[0].audio).play();
-    console.log(`audio (${dataValue[0].phonetics[0].audio})`)
+    if (dataValue[0].phonetics[2] && dataValue[0].phonetics[2].audio) {
+      new Audio(dataValue[0].phonetics[2].audio).play();
+      console.log(`audio (${dataValue[0].phonetics[2].audio})`)
+    } else if (dataValue[0].phonetics[0] && dataValue[0].phonetics[0].audio) {
+        console.log(`audio (${dataValue[0].phonetics[0].audio})`)
+      new Audio(dataValue[0].phonetics[0].audio).play();
+    } else if (dataValue[0].phonetics[1] && dataValue[0].phonetics[1].audio) {
+        console.log(`audio (${dataValue[0].phonetics[1].audio})`)
+      new Audio(dataValue[0].phonetics[1].audio).play();
+    }
   };
 
   try {
@@ -42,7 +51,6 @@ export const Data = () => {
               </div>;
             })}
              {/*<div>{dataValue[0].meanings[0]}</div>*/}
-
             {dataValue[0].meanings.map((e, index) => (
               <div className="holer transition-all" key={index}>
                 <div className="cell flex justify-between transition-all  mt-6 items-center gap-5">

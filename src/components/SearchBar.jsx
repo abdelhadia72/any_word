@@ -12,7 +12,6 @@ export const SearchBar = (e) => {
   // );
 
 
-
   const search = async () => {
     const word = refValue.current.value;
     console.log(word);
