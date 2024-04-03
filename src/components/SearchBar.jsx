@@ -1,32 +1,39 @@
 import React, { useEffect, useRef, useState } from "react";
-import useFetch from "../hooks/useFetch";
 import { useContext } from "react";
+import { ErrorContext } from "../App";
 import { WordData } from "../App";
 
 export const SearchBar = (e) => {
   const refValue = useRef("");
   const [dataValue, setDataValue] = useContext(WordData);
-
-  // const { data, loading, error } = useFetch(
-  //   `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
-  // );
-
+  const [pageError, setPageError] = useContext(ErrorContext);
+  const [mounted, setMounted] = useState(false);
 
   const search = async () => {
     const word = refValue.current.value;
-    console.log(word);
 
     try {
-      const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+      const response = await fetch(
+        `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+      );
+      setPageError(false);
+      setMounted(true);
       const data = await response.json();
-      console.log("Let's go", data);
-      setDataValue(data)
+      setDataValue(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
 
     refValue.current.value = "";
   };
+
+  useEffect(() => {
+    if (!mounted) {
+      refValue.current.value = "hello";
+      setMounted(true);
+      search();
+    }
+  }, [mounted]);
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {

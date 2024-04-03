@@ -1,31 +1,26 @@
 import React, { useState } from "react";
-import { useContext} from "react";
+import { useContext } from "react";
 import { WordData } from "../App";
-import { data } from "autoprefixer";
-import { FontTheme } from "../App";
+import { ErrorContext } from "../App";
 
 export const Data = () => {
-  const [font, setFont] = useContext(FontTheme);
   const [dataValue, setDataValue] = useContext(WordData);
-
+  const [pageError, setPageError] = useContext(ErrorContext);
 
   // to handle the audio if we don't find it int zero index we go till 3 maybe I'll make it daynamic later
   const playAudio = () => {
     if (dataValue[0].phonetics[2] && dataValue[0].phonetics[2].audio) {
       new Audio(dataValue[0].phonetics[2].audio).play();
-      console.log(`audio (${dataValue[0].phonetics[2].audio})`)
     } else if (dataValue[0].phonetics[0] && dataValue[0].phonetics[0].audio) {
-        console.log(`audio (${dataValue[0].phonetics[0].audio})`)
       new Audio(dataValue[0].phonetics[0].audio).play();
     } else if (dataValue[0].phonetics[1] && dataValue[0].phonetics[1].audio) {
-        console.log(`audio (${dataValue[0].phonetics[1].audio})`)
       new Audio(dataValue[0].phonetics[1].audio).play();
     }
   };
 
   try {
     return (
-      <div className={`font-[${font}] transition-all`}>
+      <div className={` transition-all`}>
         <div className="holder p-2 py-10">
           <div className="word flex justify-between items-center">
             <h1 className="text-8xl dark:text-white transition-all capitalize">
@@ -42,7 +37,7 @@ export const Data = () => {
             </div>
           </div>
           <h2 className="text-green-400 text-3xl mt-2 ml-4">
-             {dataValue[0].phonetics[1].text}
+            {dataValue[0].phonetics[1].text}
           </h2>
           <div className="allInfo mt-10">
             {dataValue[0].meanings.map((e) => {
@@ -50,7 +45,6 @@ export const Data = () => {
                 <h3 className="text-xl">{e.partOfSpeech}</h3>
               </div>;
             })}
-             {/*<div>{dataValue[0].meanings[0]}</div>*/}
             {dataValue[0].meanings.map((e, index) => (
               <div className="holer transition-all" key={index}>
                 <div className="cell flex justify-between transition-all  mt-6 items-center gap-5">
@@ -82,6 +76,7 @@ export const Data = () => {
       </div>
     );
   } catch (error) {
-    console.log("error");
+    console.log("here we get 09", pageError);
+    setPageError(true);
   }
 };

@@ -1,38 +1,32 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext } from "react";
 import "./App.css";
 import { Navbar } from "./components/Navbar";
 import { SearchBar } from "./components/SearchBar";
 import { NotFound } from "./components/NotFound";
-import { createContext } from "react";
 import { Data } from "./components/Data";
 
-export const WordData = createContext("hello data");
-
-// this is for the font change
-export const FontTheme = createContext( () =>{
-
-  return localStorage.getItem('font') || 'sans';
-}
-)
+export const WordData = createContext("hello");
+export const ErrorContext = createContext(false);
 
 function App() {
-  const [data, setData] = useState("data :eee");
-  const [font, setFont] = useState(() =>{
-    return localStorage.getItem('font') || 'sans';
-  });
+  const [data, setData] = useState("data :empty");
+  const [pageError, setPageError] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   return (
     <WordData.Provider value={[data, setData]}>
-      <FontTheme.Provider value={[font, setFont]}>
-      <div className={`min-h-screen font[${font}] bg-white py-20 transition-all dark:bg-[#13332e]`}>
-        <div className="container max-w-[800px] mx-auto">
-          <Navbar />
-          <SearchBar />
-          <Data />
-          {/*<NotFound /> */}
+      <ErrorContext.Provider value={[pageError, setPageError]}>
+        <div
+          className={`min-h-screen bg-white py-20 transition-all dark:bg-[#13332e]`}>
+          <div className="container max-w-[800px] mx-auto">
+            <Navbar />
+            <SearchBar />
+            <Data />
+            {pageError && <NotFound />}
+            {console.log("from app error is ", pageError)}
+          </div>
         </div>
-      </div>
-      </FontTheme.Provider>
+      </ErrorContext.Provider>
     </WordData.Provider>
   );
 }
