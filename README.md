@@ -24,25 +24,25 @@ To start using Any-Word:
 - 01 Clone the repository:
 
 ```bash
-	git clone https://github.com/abdelhadia72/any_word.git
+git clone https://github.com/abdelhadia72/any_word.git
 ```
 
 - 02 Navigate to the project directory:
 
 ```bash
-	cd any_word
+cd any_word
 ```
 
 - 03 Install dependencies:
 
 ```bash
-	npm install
+npm install
 ```
 
 - 04 Start the application:
 
 ```bash
-	npm start
+npm start
 ```
 
 - 05 Open your browser and go to `http://localhost:3000` to access Any-Word.
