@@ -42,7 +42,7 @@ npm install
 - 04 Start the application:
 
 ```bash
-npm start
+npm run dev
 ```
 
 - 05 Open your browser and go to `http://localhost:3000` to access Any-Word.
