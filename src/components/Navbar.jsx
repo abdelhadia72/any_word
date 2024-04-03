@@ -22,7 +22,7 @@ export const Navbar = () => {
   return (
     <div className="flex justify-between items-center">
       <div className="logo cursor-pointer">
-        <img className="max-w-14" src="/src/assets/logo.png" alt="logo.png" />
+        <img className="max-w-14" src="src/assets/logo.png" alt="logo.png" />
       </div>
       <div className="rightSide flex gap-10 justify-between items-center">
         <div
@@ -32,7 +32,7 @@ export const Navbar = () => {
           <img
             className="max-w-8"
             src={
-              theme === "light" ? "/src/assets/moon.png" : "/src/assets/sun.png"
+              theme === "light" ? "src/assets/moon.png" : "/src/assets/sun.png"
             }
             alt=""
           />

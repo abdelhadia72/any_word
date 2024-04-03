@@ -17,7 +17,7 @@ function App() {
     <WordData.Provider value={[data, setData]}>
       <ErrorContext.Provider value={[pageError, setPageError]}>
         <div
-          className={`min-h-screen bg-white py-20 transition-all dark:bg-[#13332e]`}>
+          className={`min-h-screen md:px-0 px-4 bg-white py-20 transition-all dark:bg-[#13332e]`}>
           <div className="container max-w-[800px] mx-auto">
             <Navbar />
             <SearchBar />

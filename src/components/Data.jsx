@@ -23,7 +23,7 @@ export const Data = () => {
       <div className={` transition-all`}>
         <div className="holder p-2 py-10">
           <div className="word flex justify-between items-center">
-            <h1 className="text-8xl dark:text-white transition-all capitalize">
+            <h1 className="md:text-8xl text-6xl dark:text-white transition-all capitalize">
               {dataValue[0].word}
             </h1>
             <div
