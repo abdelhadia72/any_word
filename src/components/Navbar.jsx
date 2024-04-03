@@ -32,7 +32,7 @@ export const Navbar = () => {
           <img
             className="max-w-8"
             src={
-              theme === "light" ? "src/assets/moon.png" : "/src/assets/sun.png"
+              theme === "light" ? "src/assets/moon.png" : "src/assets/sun.png"
             }
             alt=""
           />
