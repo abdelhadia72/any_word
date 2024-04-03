@@ -2,7 +2,7 @@
 
 Any-Word is a powerful dictionary application designed to help you quickly and easily find definitions, pronunciations, and usage examples for words. Whether you're a student, writer, or language enthusiast, Any-Word is your go-to tool for exploring the intricacies of language.
 
-![Image Alt Text](images/one.png)
+![Image Alt Text](images/any-word.png)
 
 ## Features
 
