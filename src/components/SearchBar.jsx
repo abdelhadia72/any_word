@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useContext } from "react";
 import { ErrorContext } from "../App";
 import { WordData } from "../App";
+import searchImage from "/src/assets/search.png";
 
 export const SearchBar = (e) => {
   const refValue = useRef("");
@@ -57,7 +58,7 @@ export const SearchBar = (e) => {
         />
         <img
           className="size-6 dark:invert cursor-pointer active:scale-75 transition-all"
-          src="/src/assets/search.png"
+          src={searchImage}
           alt="search.png"
           onClick={search}
         />

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import { WordData } from "../App";
 import { ErrorContext } from "../App";
+import playIcon from "/src/assets/play.png";
 
 export const Data = () => {
   const [dataValue, setDataValue] = useContext(WordData);
@@ -31,7 +32,7 @@ export const Data = () => {
               className="image-play bg-green-400 p-4 rounded-full cursor-pointer active:scale-90 transition-all">
               <img
                 className="size-8  transition-all relative left-[2px]"
-                src="/src/assets/play.png"
+                src={playIcon}
                 alt="play.png"
               />
             </div>
